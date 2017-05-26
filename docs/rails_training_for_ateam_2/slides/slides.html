@@ -1,0 +1,113 @@
+<section>
+
+<h2>Rails勉強会 #2</h2>
+
+<p>rito</p>
+
+<p>2017/05/29</p>
+
+</section>
+<section>
+
+<h3>この会の目的</h3>
+<hr>
+<ul>
+  <li>Railsの知識を少しでも深めて業務に役立てよう</li>
+  <li>チームおよび職種の枠を超えた相談を気軽に行おう</li>
+</ul>
+
+<p>次回以降はリクエストがあればリクエスト内容をやります <img class="emoji" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png"></p>
+
+</section>
+<section>
+
+<h3>今回の内容</h3>
+<hr>
+<p>テストを書いた処理をちょっとしたテクニックで<br>
+リファクタリングしよう</p>
+
+</section>
+<section>
+
+<h3>
+<code>calculate_loan_charge_from</code> をリファクタリングしましょう</h3>
+<hr>
+<p>以下のような方式でリファクタリング</p>
+<ul>
+  <li>
+<code>calculate_loan_charge_from</code> は結局は「日数×料金」をする</li>
+  <li>「日数」と「料金」の算出は別メソッドに出す</li>
+</ul>
+
+<p>修正してもテストが通ることを確認して下さいね <img class="emoji" alt=":smiling_imp:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f608.png"></p>
+
+</section>
+<section>
+
+<h3>リファクタリング後の <code>calculate_loan_charge_from</code> のテストはオーバースペックです</h3>
+<hr>
+<p>「日数」と「料金」は別メソッドの役割なので <br>
+<code>calculate_loan_charge_from</code> の<br>
+条件( <code>context</code> )として必要ないはずです <img class="emoji" alt=":umbrella:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2614.png"></p>
+
+<p><img class="emoji" alt=":point_up:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/261d.png"> 「日数」と「料金」が返す値で計算されていることを<br>
+ テストすればいいということです</p>
+
+</section>
+<section>
+
+<h3>テストも直しましょう</h3>
+<p>以下の要領でテストを直して下さい。</p>
+
+<hr>
+<ul>
+  <li>「日数」の <code>context</code> は「日数」のメソッドのテストに移動でして下さい。</li>
+  <li>「料金」の <code>context</code> は「料金」のメソッドのテストに移動して下さい。</li>
+</ul>
+
+</section>
+<section>
+
+<h3>
+<code>calculate_loan_charge_from</code> 本来が行うべくテストに直しましょう</h3>
+<p><code>calculate_loan_charge_from</code> ってどんな役割だっけ？ <img class="emoji" alt=":thinking:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f914.png"></p>
+
+</section>
+<section>
+
+<h3>「日数」と「料金」を擬似的に動作させる</h3>
+<p>擬似的に動作させるのをモックと言います<br>
+（細かく言うと色々あるのですが、この認識で大丈夫）</p>
+<hr>
+<p><code>calculate_loan_charge_from</code> は<br>
+「日数」と「料金」の掛け算のが役割です <img class="emoji" alt=":bulb:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png"></p>
+
+</section>
+<section>
+
+<h3>モックの作り方</h3>
+<p>実際のモックの作成方法</p>
+<hr>
+<p>このように書くと「日数計算のメソッド」は ‘3’ という値を返す</p>
+<pre><code class="language-ruby">allow(book).to recevi(:cal_number_of_days).and_return(3)
+</code></pre>
+
+</section>
+<section>
+
+<h3>テストを修正しよう</h3>
+<p>モックを使ったテストに <code>calculate_loan_charge_from</code> に書き換えて下さい</p>
+<hr>
+<p>モックのメリットは</p>
+<ul>
+  <li>わざわざ実値を用意しなくてよい</li>
+  <li>本来行うべくテストだけを行うようにできる</li>
+</ul>
+
+</section>
+<section>
+
+<h3>本日はこれで終了です</h3>
+<p><img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"> お疲れ様でした <img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"></p>
+
+</section>
