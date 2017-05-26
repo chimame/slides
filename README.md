@@ -1,5 +1,6 @@
 # slides
-- [Rails勉強会 for ATEAM life style #1](https://chimame.github.io/slides/rails_training_for_ateam_1/slides/)
+- [Rails勉強会 for ATEAM life style #1](https://chimame.github.io/slides/rails_training_for_ateam_1/slides/)
+- [Rails勉強会 for ATEAM life style #2](https://chimame.github.io/slides/rails_training_for_ateam_2/slides/)
 
 # Using
 ```
