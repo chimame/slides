@@ -1,0 +1,111 @@
+<section>
+
+<h2>Rails勉強会 #3</h2>
+
+<p>rito</p>
+
+<p>2017/06/14</p>
+
+</section>
+<section>
+
+<h3>この会の目的</h3>
+<hr>
+<ul>
+  <li>Railsの知識を少しでも深めて業務に役立てよう</li>
+  <li>チームおよび職種の枠を超えた相談を気軽に行おう</li>
+</ul>
+
+<p>次回以降はリクエストがあればリクエスト内容をやります <img class="emoji" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png"></p>
+
+</section>
+<section>
+
+<h3>今回の内容</h3>
+<p>ルーティング</p>
+<hr>
+<p>要望があったので今回はルーティングについて行います。</p>
+
+</section>
+<section>
+
+<h3>Railsルーター（ルーティング）の役割</h3>
+<p><img class="emoji" alt=":exclamation:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png"> URLからコントローラおよびアクションを割り当てる <img class="emoji" alt=":exclamation:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png"></p>
+<hr>
+<p>GET /parents/13 #=&gt; ParentsController#show id: 13</p>
+
+</section>
+<section>
+
+<h3>ルーティングの基本</h3>
+<p>Railsルーターの基本はRESTfulです</p>
+<hr>
+<p>以下の記述をconfig/routes.rbに追記して確認(<code>bundle exec rails routes</code>)して確認しましょう</p>
+<pre><code class="language-ruby">#config/routes.rb
+Rails.application.routes.draw do
+  resources :books
+end
+</code></pre>
+
+</section>
+<section>
+
+<h3>routes.rbのテスト</h3>
+<p>もちろん、今作成したroutes.rbのテストコードも作成することができます<br>
+（が、自分は殆ど作ることはありません <img class="emoji" alt=":pensive:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f614.png"> ）</p>
+
+<hr>
+<p>実際に動くものの方がイメージがつきやすので、以下のコマンドを実行</p>
+<pre><code class="language-shell">bin/rails g scaffold_controller book title:string sub_title:string author:string release_date:date price:integer
+</code></pre>
+
+<p>作成された <code>spec/routing/books_routing_spec.rb</code> を見てみましょう</p>
+
+</section>
+<section>
+
+<h3>routes.rbの色々な書き方</h3>
+<p>では以下のようなroutes.rbが書かれている場合のテストはどうなりますか？ <img class="emoji" alt=":thinking:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f914.png"></p>
+
+<hr>
+<pre><code class="language-ruby"># config/routes.rb
+Rails.application.routes.draw do
+  resources :books do
+    resources :rental_histories
+  end
+
+  namespace :api do
+    resources :books
+  end
+
+  scope '/admin' do
+    resources :rental_histries
+  end
+end
+</code></pre>
+<p>実際にテストを作ってみて下さい<br>
+（Controllerはカラでいいので作成して下さい）</p>
+
+</section>
+<section>
+
+<h3>ネストが長いURL</h3>
+<p>ここからは上記が終わった方向け<br>
+先程の例で<code>rental_histories</code>は常に<code>books</code>が付くので長い <img class="emoji" alt=":cry:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f622.png"></p>
+
+<hr>
+<p>なので <code>shallow: true</code> を付けると、、、？</p>
+
+</section>
+<section>
+
+<h3>テストの修正</h3>
+<p><code>shallow: true</code> を付ければテストが失敗するので、修正しましょう</p>
+
+</section>
+<section>
+
+<h3>本日はこれで終了です</h3>
+<p><img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"> お疲れ様でした <img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"></p>
+
+</section>
