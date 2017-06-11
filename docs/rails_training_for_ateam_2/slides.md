@@ -65,7 +65,7 @@ rito
 - - -
 このように書くと「日数計算のメソッド」は '3' という値を返す
 ```ruby
-allow(book).to recevi(:cal_number_of_days).and_return(3)
+allow(book).to receive(:cal_number_of_days).and_return(3)
 ```
 
 ---
