@@ -60,7 +60,15 @@ bin/rails g scaffold_controller book title:string sub_title:string author:string
 # config/routes.rb
 Rails.application.routes.draw do
   resources :books do
-    resources :rental_histories
+    resources :rental_histories do
+      collection do
+        get 'months/(:current_month)', action: :months, as: :months
+      end
+    end
+
+    member do
+      post :new_confirm
+    end
   end
 
   namespace :api do
