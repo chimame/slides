@@ -1,0 +1,104 @@
+<section>
+
+<h2>Rails勉強会 #4</h2>
+
+<p>rito</p>
+
+<p>2017/07/12</p>
+
+</section>
+<section>
+
+<h3>この会の目的</h3>
+<hr>
+<ul>
+  <li>Railsの知識を少しでも深めて業務に役立てよう</li>
+  <li>チームおよび職種の枠を超えた相談を気軽に行おう</li>
+</ul>
+
+<p>次回以降はリクエストがあればリクエスト内容をやります <img class="emoji" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png"></p>
+
+</section>
+<section>
+
+<h3>今回の内容</h3>
+<p>コントローラ</p>
+<hr>
+<p>みんな大好きなコントローラです！</p>
+
+</section>
+<section>
+
+<h3>コントローラって何？</h3>
+<p>質問です。</p>
+<hr>
+<ul>
+  <li>MVCデザインパターンというのをご存知ですか？</li>
+  <li>それぞれの役割は知っていますか？</li>
+</ul>
+
+</section>
+<section>
+
+<h3>コントローラの役割</h3>
+<p>コントローラの役割は以下です。</p>
+<hr>
+<ol>
+  <li>ユーザからの入力値を受け取る</li>
+  <li>モデルに対して加工命令を出す ← <strong>超重要</strong>
+</li>
+  <li>ユーザにデータ（View）とステータス（http status）を返す</li>
+  <li>ユーザ特有のデータ（Session,Cookie）を管理する</li>
+</ol>
+
+<p>これだけです。<br>
+これ以上のことはコントローラではしないで下さい。<br>
+（切実なお願い）</p>
+
+</section>
+<section>
+
+<h3>コントローラのテスト</h3>
+<p>テストする場合も役割だけをテストします。</p>
+<hr>
+<ol>
+  <li>入力値はテスト時に渡す</li>
+  <li>expect{ post :create, id: @book.id }.to change(Book, :count).by(1)<br>
+  ただし、データ取得処理はモック</li>
+  <li>expect(response.status).to eq(200)<br>
+  expect(response).to render_template template<br>
+  expect(response).to redirect_to author_path</li>
+  <li>expect(session[:hoge]).to eq :fuga</li>
+</ol>
+
+</section>
+<section>
+
+<h3>books_controllerのテスト作成</h3>
+<p>generatorで作成されたテストは正常終了していません</p>
+<hr>
+<p>ですので、以下のコマンドが正常に終了するように直してみましょう</p>
+<pre><code class="language-shell">$ bundle exec rspec spec/controllers/books_controller.rb
+</code></pre>
+
+</section>
+<section>
+
+<h3>ハンズオン</h3>
+<p>以下の仕様となるようにbooks_controllerやviewに処理を追加して下さい。</p>
+<hr>
+<ol>
+  <li>showアクションが呼ばれる度に表示されたbookのidを記憶</li>
+  <li>記憶しているidが表示するbookと異なればpriceの差を表示</li>
+  <li>記憶しているidがない場合や同一の場合は表示しない</li>
+</ol>
+
+<p>もちろんテストも作成して下さい</p>
+
+</section>
+<section>
+
+<h3>本日はこれで終了です</h3>
+<p><img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"> お疲れ様でした <img class="emoji" alt=":clap:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44f.png"></p>
+
+</section>
