@@ -12,31 +12,180 @@
 
 <h2>目次</h2>
 <hr>
+<p>　</p>
 <ul>
-  <li>フロントエンドテスト</li>
-  <li>テストツール</li>
-  <li>セットアップ</li>
+  <li>フロントエンドテスト事情<br>
+　</li>
+  <li>テストツール<br>
+　</li>
+  <li>セットアップ<br>
+　<br>
+　<br>
+　<br>
+　</li>
 </ul>
 
 </section>
 <section>
 
-<h2>フロントエンドのテスト</h2>
+<h2>フロントエンドテスト事情</h2>
 <hr>
-<p>フロントエンド（リッチなUIや複雑な動作、SPA）によるテストの必要性をここは書く</p>
+<p>　<br>
+皆さんに質問です<br>
+　</p>
+<ul>
+  <li>テストって書いてますか？<br>
+　</li>
+  <li>書いているならどんなテストしてますか？<br>
+　<br>
+　<br>
+　<br>
+　<br>
+　</li>
+</ul>
+
+</section>
+<section>
+
+<h2>フロントエンドテスト事情</h2>
+<hr>
+<p>　<br>
+JavaScriptでDOMを書き換えるような画面がある場合は<br>
+　<br>
+どうやってテストしていますか？<br>
+　</p>
+<ul>
+  <li>
+    <p>E2Eでカバー？</p>
+  </li>
+  <li>
+    <p>JavaScript自体のテストを実施？</p>
+  </li>
+  <li>
+    <p>実施しない？<br>
+　</p>
+  </li>
+</ul>
+
+</section>
+<section>
+
+<h2>フロントエンドテスト事情</h2>
+<hr>
+<p>　<br>
+数あるフロントエンドのテストフレームワークで<br>
+　<br>
+ <img class="emoji" alt=":spades:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2660.png"> <img class="emoji" alt=":hearts:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2665.png"> <span style="font-size: 100px;"> Jest </span> <img class="emoji" alt=":clubs:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2663.png"> <img class="emoji" alt=":diamonds:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2666.png"><br>
+　<br>
+を紹介します<br>
+　<br>
+　<br>
+　</p>
 
 </section>
 <section>
 
 <h2>テストツール</h2>
 <hr>
-<p>JestやAVAを含めたテストツールのカバー範囲と比較を交えて、今回使用するJestの特徴を書く</p>
+<p>　<br>
+少し前までの（私の周り）トレンド？は<br>
+　</p>
+<ul>
+  <li>テスト環境：「mocha」<br>
+　　　　　　　　＋</li>
+  <li>アサート：「chai」 or 「power-assert」<br>
+　</li>
+</ul>
+
+<p>の組み合わせで使用<br>
+　<br>
+　<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>テストツール</h2>
+<hr>
+<p>　<br>
+　<br>
+　<br>
+　<br>
+じゃあJestって何ができるの？<br>
+　<br>
+　<br>
+　<br>
+　<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>テストツール</h2>
+<hr>
+<p>Jestが持っている主な機能<br>
+　</p>
+<ul>
+  <li>テスト環境</li>
+  <li>アサート</li>
+  <li>モック、スタブ</li>
+  <li>スナップショットテスト</li>
+  <li>変更監視による自動実行（watch）機能</li>
+  <li>（カバレッジ等の）レポート機能<br>
+　</li>
+</ul>
+
+<p>Jest単体でテストに最低必要な機能は持っています<br>
+　</p>
+
+</section>
+<section>
+
+<h2>テストツール</h2>
+<hr>
+<p>もちろんJest以外のものもあるので一応紹介　※<a href="https://medium.com/powtoon-engineering/a-complete-guide-to-testing-javascript-in-2017-a217b4cd5a2a">参照</a><br>
+　</p>
+<ul>
+  <li>テストの環境を提供する<br>
+Mocha、Jasmine、AVA、<span style="color:red">Jest</span>、Karma</li>
+  <li>テストの構造を提供する<br>
+Mocha、Jasmine、AVA、<span style="color:red">Jest</span>、Cucumber</li>
+  <li>アサーション機能を提供する<br>
+Chai、Jasmine、AVA、<span style="color:red">Jest</span>、Unexpected</li>
+  <li>生成、表示、テスト結果をウォッチする<br>
+Mocha、Jasmine、AVA、<span style="color:red">Jest</span>、Karma</li>
+</ul>
+
+</section>
+<section>
+
+<h2>テストツール</h2>
+<hr>
+<ul>
+  <li>コンポーネント構造のスナップショットを比較する<br>
+AVA、<span style="color:red">Jest</span>
+</li>
+  <li>モック、スパイ、スタブを提供する<br>
+Sinon、Jasmine、enzyme、 <span style="color:red">Jest</span>、testdouble</li>
+  <li>コードカバレッジのレポートを生成する<br>
+Istanbul、 <span style="color:red">Jest</span>
+</li>
+  <li>シナリオ実行の管理ができるブラウザ、または疑似ブラウザの環境を提供する<br>
+Protractor、Nightwatch、Phantom、Casper</li>
+</ul>
+
+<p>　<br>
+機能だけ見るとJestの対抗はAVAとJasmine<br>
+　</p>
 
 </section>
 <section>
 
 <h2>セットアップ</h2>
 <hr>
-<p>create-react-appを使用する前提でのJestのセットアップを書く</p>
+<p>create-react-appを使用する前提でのJestのセットアップを書く<br>
+セットアップから簡単なテストを一通り実施するスライドにする</p>
 
 </section>
