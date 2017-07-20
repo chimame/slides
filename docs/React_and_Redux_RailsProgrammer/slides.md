@@ -1,5 +1,5 @@
 # RailsプログラマのためのReact + Redux TDD with 西脇.rb & 神戸.rb
-## Jest
+## Jest編
 
 rito
 
@@ -16,7 +16,7 @@ rito
 　
 - セットアップ
 　
-　
+- Jestチュートリアル
 　
 　
 
@@ -71,7 +71,7 @@ JavaScriptでDOMを書き換えるような画面がある場合は
 ## テストツール
 - - -
 　
-少し前までの（私の周り）トレンド？は
+1年くらい前まで（私の周り）のトレンド？は
 　
 - テスト環境：「mocha」
 　　　　　　　　＋
@@ -152,5 +152,210 @@ Jest単体でテストに最低必要な機能は持っています
 
 ## セットアップ
 - - -
-create-react-appを使用する前提でのJestのセットアップを書く
-セットアップから簡単なテストを一通り実施するスライドにする
+　
+　
+今回は`create-react-app`を使用するので
+　
+```shell
+$ yarn global add create-react-app
+$ create-react-app jest_hands_on
+$ cd jest_hands_on
+```
+　
+以上です！（素の場合は色々あるけど…）
+　
+　
+---
+
+## セットアップ
+- - -
+　
+`yarn test`でテストが実行できます
+　
+```shell
+$ yarn test
+#=>  PASS  src/App.test.js
+#=>  ✓ renders without crashing (54ms)
+#=>
+#=>Test Suites: 1 passed, 1 total
+#=>Tests:       1 passed, 1 total
+#=>Snapshots:   0 total
+#=>Time:        4.628s
+#=>Ran all test suites related to changed files.
+```
+　
+　
+　
+---
+
+## Jestチュートリアル
+- - -
+　
+　
+以下のファイルを作成し、軽くテストをしてみます
+　
+```js
+// <root>/src/sample/sample.js
+const sample = (i) => {
+  return i + 1
+}
+
+export default sample
+```
+　
+　
+　
+---
+
+## Jestチュートリアル
+- - -
+　
+テスト実行ファイルは以下の２パターンです
+　
+- 「`__tests__`」というフォルダ以下に配置している`"*.js"`ファイルを実行
+　
+- `"*.spec.js"`もしくは`"*.test.js"`ファイルを実行
+　
+　
+　
+　
+
+---
+
+## Jestチュートリアル
+- - -
+　
+functionのテスト例
+　
+```js
+// <root>/src/__tests__/sample.js
+import sample from '../sample/sample.js'
+
+describe('sample', () => {
+  beforeAll(() => {
+    console.log('beforeAll')
+  })
+  beforeEach(() => {
+    console.log('beforeEach')
+  })
+  test('plus one', () => {
+    expect(sample(1)).toBe(2)
+  })
+
+  test('not', () => {
+    expect(sample(1)).not.toBe(1)
+  })
+})
+```
+
+---
+
+## Jestチュートリアル
+- - -
+　
+モックのテスト例
+　
+```js
+// <root>/src/sample/test/mockSample.test.js
+describe('mockSample', () => {
+  jest.mock('../sample')
+  const sample = require('../sample').default
+
+  sample.mockImplementation(() => 42)
+
+  test('sample', () => {
+    expect(sample(1)).toBe(42)
+  })
+})
+```
+　
+　
+---
+
+## Jestチュートリアル
+- - -
+　
+divを出力するコンポーネント
+　
+```js
+// <root>/src/sample/render.js
+import React from 'react'
+
+export default () => {
+  return (
+    <div>test</div>
+  )
+}
+```
+　
+　
+　
+　
+　
+---
+
+## Jestチュートリアル
+- - -
+　
+divコンポーネント構造をテストする
+実行すると`__snapshots__`フォルダが作成される
+　
+```js
+// <root>/src/sample/render.test.js
+import render from '../render.js'
+
+describe('toMatchSnapshot example', () => {
+  test('render', () => {
+    expect(render()).toMatchSnapshot()
+  })
+})
+```
+　
+コンポーネント側を変更してから再度テスト動かすと…
+差分を見て問題ない場合は`yarn test -- -u`
+　
+---
+
+## Jestチュートリアル
+- - -
+　
+カバレッジ出力は`--coverage`オプションにて実行
+　
+```shell
+$ yarn test -- --coverage
+#---------------------------|----------|----------|----------|----------|----------------|
+#File                       |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+#---------------------------|----------|----------|----------|----------|----------------|
+#All files                  |     8.16 |        0 |    16.67 |       16 |                |
+# src                       |     2.17 |        0 |     6.25 |     4.55 |                |
+#  App.js                   |      100 |      100 |      100 |      100 |                |
+#  index.js                 |        0 |        0 |        0 |        0 |  1,2,3,4,5,7,8 |
+#  registerServiceWorker.js |        0 |        0 |        0 |        0 |... 126,127,128 |
+# src/sample                |      100 |      100 |      100 |      100 |                |
+#  render.js                |      100 |      100 |      100 |      100 |                |
+#  sample.js                |      100 |      100 |      100 |      100 |                |
+#---------------------------|----------|----------|----------|----------|----------------|
+```
+　
+　
+---
+
+## おわり
+- - -
+　
+ということで本日はこのJestを使用してのTDDからReact+Reduxを勉強しようという会です
+　
+　
+Jestの使用で困れば以下を参考に
+<iframe
+  class="c-hatena-embed"
+  title="Facebook製のJavaScriptテストツール「Jest」の逆引き使用例"
+  src="https://hatenablog-parts.com/embed?url=http://qiita.com/chimame/items/e97883fd46b67529d59f"
+  frameborder="0"
+  scrolling="no">
+</iframe>
+　
+　
+　
+　
+　

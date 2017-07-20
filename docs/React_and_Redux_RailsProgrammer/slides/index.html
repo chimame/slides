@@ -24,6 +24,24 @@
 
 <link rel="stylesheet" href="css/reveal-ck.css">
 
+<style type="text/css">
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    text-transform: none;
+  }
+  .c-hatena-embed{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 0 1.7rem;
+    border: none;
+  }
+</style>
 
 <!-- Printing and PDF exports -->
 <script>
@@ -47,7 +65,7 @@
     <section>
 
 <h1>RailsプログラマのためのReact + Redux TDD with 西脇.rb &amp; 神戸.rb</h1>
-<h2>Jest</h2>
+<h2>Jest編</h2>
 
 <p>rito</p>
 
@@ -65,8 +83,8 @@
   <li>テストツール<br>
 　</li>
   <li>セットアップ<br>
-　<br>
-　<br>
+　</li>
+  <li>Jestチュートリアル<br>
 　<br>
 　</li>
 </ul>
@@ -134,7 +152,7 @@ JavaScriptでDOMを書き換えるような画面がある場合は<br>
 <h2>テストツール</h2>
 <hr>
 <p>　<br>
-少し前までの（私の周り）トレンド？は<br>
+1年くらい前まで（私の周り）のトレンド？は<br>
 　</p>
 <ul>
   <li>テスト環境：「mocha」<br>
@@ -231,8 +249,219 @@ Protractor、Nightwatch、Phantom、Casper</li>
 
 <h2>セットアップ</h2>
 <hr>
-<p>create-react-appを使用する前提でのJestのセットアップを書く<br>
-セットアップから簡単なテストを一通り実施するスライドにする</p>
+<p>　<br>
+　<br>
+今回は<code>create-react-app</code>を使用するので<br>
+　</p>
+<pre><code class="language-shell">$ yarn global add create-react-app
+$ create-react-app jest_hands_on
+$ cd jest_hands_on
+</code></pre>
+<p>　<br>
+以上です！（素の場合は色々あるけど…）<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>セットアップ</h2>
+<hr>
+<p>　<br>
+<code>yarn test</code>でテストが実行できます<br>
+　</p>
+<pre><code class="language-shell">$ yarn test
+#=&gt;  PASS  src/App.test.js
+#=&gt;  ✓ renders without crashing (54ms)
+#=&gt;
+#=&gt;Test Suites: 1 passed, 1 total
+#=&gt;Tests:       1 passed, 1 total
+#=&gt;Snapshots:   0 total
+#=&gt;Time:        4.628s
+#=&gt;Ran all test suites related to changed files.
+</code></pre>
+<p>　<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+　<br>
+以下のファイルを作成し、軽くテストをしてみます<br>
+　</p>
+<pre><code class="language-js">// &lt;root&gt;/src/sample/sample.js
+const sample = (i) =&gt; {
+  return i + 1
+}
+
+export default sample
+</code></pre>
+<p>　<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+テスト実行ファイルは以下の２パターンです<br>
+　</p>
+<ul>
+  <li>「<code>__tests__</code>」というフォルダ以下に配置している<code>"*.js"</code>ファイルを実行<br>
+　</li>
+  <li>
+<code>"*.spec.js"</code>もしくは<code>"*.test.js"</code>ファイルを実行<br>
+　<br>
+　<br>
+　<br>
+　</li>
+</ul>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+functionのテスト例<br>
+　</p>
+<pre><code class="language-js">// &lt;root&gt;/src/__tests__/sample.js
+import sample from '../sample/sample.js'
+
+describe('sample', () =&gt; {
+  beforeAll(() =&gt; {
+    console.log('beforeAll')
+  })
+  beforeEach(() =&gt; {
+    console.log('beforeEach')
+  })
+  test('plus one', () =&gt; {
+    expect(sample(1)).toBe(2)
+  })
+
+  test('not', () =&gt; {
+    expect(sample(1)).not.toBe(1)
+  })
+})
+</code></pre>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+モックのテスト例<br>
+　</p>
+<pre><code class="language-js">// &lt;root&gt;/src/sample/test/mockSample.test.js
+describe('mockSample', () =&gt; {
+  jest.mock('../sample')
+  const sample = require('../sample').default
+
+  sample.mockImplementation(() =&gt; 42)
+
+  test('sample', () =&gt; {
+    expect(sample(1)).toBe(42)
+  })
+})
+</code></pre>
+<p>　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+divを出力するコンポーネント<br>
+　</p>
+<pre><code class="language-js">// &lt;root&gt;/src/sample/render.js
+import React from 'react'
+
+export default () =&gt; {
+  return (
+    &lt;div&gt;test&lt;/div&gt;
+  )
+}
+</code></pre>
+<p>　<br>
+　<br>
+　<br>
+　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+divコンポーネント構造をテストする<br>
+実行すると<code>__snapshots__</code>フォルダが作成される<br>
+　</p>
+<pre><code class="language-js">// &lt;root&gt;/src/sample/render.test.js
+import render from '../render.js'
+
+describe('toMatchSnapshot example', () =&gt; {
+  test('render', () =&gt; {
+    expect(render()).toMatchSnapshot()
+  })
+})
+</code></pre>
+<p>　<br>
+コンポーネント側を変更してから再度テスト動かすと…<br>
+差分を見て問題ない場合は<code>yarn test -- -u</code><br>
+　</p>
+
+</section>
+<section>
+
+<h2>Jestチュートリアル</h2>
+<hr>
+<p>　<br>
+カバレッジ出力は<code>--coverage</code>オプションにて実行<br>
+　</p>
+<pre><code class="language-shell">$ yarn test -- --coverage
+#---------------------------|----------|----------|----------|----------|----------------|
+#File                       |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+#---------------------------|----------|----------|----------|----------|----------------|
+#All files                  |     8.16 |        0 |    16.67 |       16 |                |
+# src                       |     2.17 |        0 |     6.25 |     4.55 |                |
+#  App.js                   |      100 |      100 |      100 |      100 |                |
+#  index.js                 |        0 |        0 |        0 |        0 |  1,2,3,4,5,7,8 |
+#  registerServiceWorker.js |        0 |        0 |        0 |        0 |... 126,127,128 |
+# src/sample                |      100 |      100 |      100 |      100 |                |
+#  render.js                |      100 |      100 |      100 |      100 |                |
+#  sample.js                |      100 |      100 |      100 |      100 |                |
+#---------------------------|----------|----------|----------|----------|----------------|
+</code></pre>
+<p>　<br>
+　</p>
+
+</section>
+<section>
+
+<h2>おわり</h2>
+<hr>
+<p>　<br>
+ということで本日はこのJestを使用してのTDDからReact+Reduxを勉強しようという会です<br>
+　<br>
+　<br>
+Jestの使用で困れば以下を参考に</p>
+<iframe class="c-hatena-embed" title="Facebook製のJavaScriptテストツール「Jest」の逆引き使用例" src="https://hatenablog-parts.com/embed?url=http://qiita.com/chimame/items/e97883fd46b67529d59f" frameborder="0" scrolling="no">
+</iframe>
+<p>　<br>
+　<br>
+　<br>
+　<br>
+　</p>
 
 </section>
 
