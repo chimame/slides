@@ -15,6 +15,9 @@
     margin: 0 0 1.7rem;
     border: none;
   }
+  .reveal code {
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+  }
 </style>
 # RailsプログラマのためのReact + Redux TDD with 西脇.rb & 神戸.rb
 ## Jest編
