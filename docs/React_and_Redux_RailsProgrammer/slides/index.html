@@ -24,24 +24,6 @@
 
 <link rel="stylesheet" href="css/reveal-ck.css">
 
-<style type="text/css">
-  .reveal h1,
-  .reveal h2,
-  .reveal h3,
-  .reveal h4,
-  .reveal h5,
-  .reveal h6 {
-    text-transform: none;
-  }
-  .c-hatena-embed{
-    display: block;
-    overflow: hidden;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 0 1.7rem;
-    border: none;
-  }
-</style>
 
 <!-- Printing and PDF exports -->
 <script>
@@ -63,6 +45,25 @@
   <!-- Any section element inside of this container is displayed as a slide -->
   <div class="slides">
     <section>
+
+<style type="text/css">
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    text-transform: none;
+  }
+  .c-hatena-embed{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 0 1.7rem;
+    border: none;
+  }
+</style>
 
 <h1>RailsプログラマのためのReact + Redux TDD with 西脇.rb &amp; 神戸.rb</h1>
 <h2>Jest編</h2>
@@ -406,7 +407,7 @@ export default () =&gt; {
 divコンポーネント構造をテストする<br>
 実行すると<code>__snapshots__</code>フォルダが作成される<br>
 　</p>
-<pre><code class="language-js">// &lt;root&gt;/src/sample/render.test.js
+<pre><code class="language-js">// &lt;root&gt;/src/sample/test/render.test.js
 import render from '../render.js'
 
 describe('toMatchSnapshot example', () =&gt; {

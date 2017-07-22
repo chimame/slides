@@ -1,3 +1,21 @@
+<style type="text/css">
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    text-transform: none;
+  }
+  .c-hatena-embed{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 0 1.7rem;
+    border: none;
+  }
+</style>
 # RailsプログラマのためのReact + Redux TDD with 西脇.rb & 神戸.rb
 ## Jest編
 
@@ -301,7 +319,7 @@ divコンポーネント構造をテストする
 実行すると`__snapshots__`フォルダが作成される
 　
 ```js
-// <root>/src/sample/render.test.js
+// <root>/src/sample/test/render.test.js
 import render from '../render.js'
 
 describe('toMatchSnapshot example', () => {
