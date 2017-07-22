@@ -19,8 +19,9 @@
     font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
   }
 </style>
-# RailsプログラマのためのReact + Redux TDD with 西脇.rb & 神戸.rb
-## Jest編
+# RailsプログラマのためのReact + Redux TDD
+## shinosaka.rb & nishiwaki.rb & kobe.rb
+# Jest編
 
 rito
 
